@@ -1,3 +1,9 @@
 
 # compiled binary
 dial.exe
+
+# curl win32 binary
+curl.exe
+
+# varible, have a look at config.sample.ahk
+config.ahk

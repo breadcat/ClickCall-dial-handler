@@ -2,14 +2,20 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-number = "%1%%2%"
+number = "%1%%2%%3%" ; supports up to two space characters
 
 StringReplace, number, number, dial:`/`/,, All ; remove url handler
 StringReplace, number, number, tel:`/`/,, All ; remove url handler
 StringReplace, number, number, `%20,, All ; remove html spaces
 number := RegExReplace(number, "[\W_]+") ; remove underscores, non-numbers and non-letters
 
-Run, "%A_ProgramFiles%\iPECS\iPECS ClickCall\iPECS ClickCall.exe"
-WinWaitActive, iPECS ClickCall, , 2
-    Send, {Sleep 75}9%number%{Sleep 75}{Enter} ; send dial command
-    Return
+#Include, *i %A_ScriptDir%\config.ahk ; include configuration values
+
+postData = `<?xml version=\`"1.0\`" ?`>`<!DOCTYPE ipecs_svc SYSTEM \`"iPECSService.dtd\`"`>`<ipecs_svc`>`<request type=\`"service\`" encrypt=\`"off\`" servicename=\`"clicktocall\`"`>`<clicktocall`>`<userinfo`>`<stnnum`>%stnNum%`</stnnum`>`<userid`>%stnNum%`</userid`>`<userpwd encrypt=\`"off\`"`>%stnPwd%`</userpwd`>`</userinfo`>`<srcinfo`>`<dialnum`>%stnNum%`</dialnum`>`</srcinfo`>`<destinfo calltype=\`"single\`"`>`<dialnum`>9%number%`</dialnum`>`</destinfo`>`</clicktocall`>`</request`>`</ipecs_svc`>
+ucpAddr = https`:`/`/%ucpIP%`:%ucpPort%`/ipecs_svc
+dialCmd = curl -k -X POST -d "%postData%" "%ucpAddr%"
+
+FileAppend, %dialCmd%, dial.bat ; for some reason, can't be called directly. maybe character escaping to blame
+Run, dial.bat,,hide ; run the command, bidden
+Sleep, 1000 ; fails if file is deleted too quickly
+FileDelete dial.bat ; delete temp file afterwards
