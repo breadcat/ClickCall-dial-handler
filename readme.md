@@ -11,3 +11,6 @@ The script can also be compiled with `Ahk2Exe.exe`, to negate having autohotkey 
 Requires a Windows binary version of `curl.exe`, available [here](https://curl.haxx.se/download.html) to make POST requests.
 
 The script also supports being used as your default `dial://` and `tel://` URL handlers.
+
+### Setup
+Set the login details for your extension in PGM227, edit the `config.ahk` with the appropriate details and you're good to go.
