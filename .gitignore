@@ -7,3 +7,6 @@ curl.exe
 
 # varible, have a look at config.sample.ahk
 config.ahk
+
+# upx binary
+upx.exe
