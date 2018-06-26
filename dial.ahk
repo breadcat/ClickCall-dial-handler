@@ -2,7 +2,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-number = "%1%%2%%3%" ; supports up to two space characters
+number = "%1%%2%%3%%4%%5%" ; supports plenty of spaces
 
 StringReplace, number, number, dial:`/`/,, All ; remove url handler
 StringReplace, number, number, tel:`/`/,, All ; remove url handler
