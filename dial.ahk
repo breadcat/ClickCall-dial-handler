@@ -16,6 +16,6 @@ ucpAddr = https`:`/`/%ucpIP%`:%ucpPort%`/ipecs_svc
 dialCmd = curl -k -X POST -d "%postData%" "%ucpAddr%"
 
 FileAppend, %dialCmd%, dial.bat ; for some reason, can't be called directly. maybe character escaping to blame
-Run, dial.bat,,hide ; run the command, bidden
+Run, dial.bat,,hide ; run the command, hidden
 Sleep, 1000 ; fails if file is deleted too quickly
 FileDelete dial.bat ; delete temp file afterwards
