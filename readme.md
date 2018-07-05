@@ -13,4 +13,5 @@ Requires a Windows binary version of `curl.exe`, available [here](https://curl.h
 The script also supports being used as your default `dial://` and `tel://` URL handlers.
 
 ### Setup
-Set the login details for your extension in PGM227, edit the `config.ahk` with the appropriate details and you're good to go.
+Firstly set the login details for your extension in PGM227 and edit the `config.ahk` with the appropriate details.
+Then enabled `Click To Call Service` on your extension in PGM111 and you're good to go.
