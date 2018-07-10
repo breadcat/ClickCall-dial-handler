@@ -11,7 +11,7 @@ number := RegExReplace(number, "[\W_]+") ; remove underscores, non-numbers and n
 
 #Include, *i %A_ScriptDir%\config.ahk ; include configuration values
 
-postData = `<?xml version=\`"1.0\`" ?`>`<!DOCTYPE ipecs_svc SYSTEM \`"iPECSService.dtd\`"`>`<ipecs_svc`>`<request type=\`"service\`" encrypt=\`"off\`" servicename=\`"clicktocall\`"`>`<clicktocall`>`<userinfo`>`<stnnum`>%stnNum%`</stnnum`>`<userid`>%stnNum%`</userid`>`<userpwd encrypt=\`"off\`"`>%stnPwd%`</userpwd`>`</userinfo`>`<srcinfo`>`<dialnum`>%stnNum%`</dialnum`>`</srcinfo`>`<destinfo calltype=\`"single\`"`>`<dialnum`>9%number%`</dialnum`>`</destinfo`>`</clicktocall`>`</request`>`</ipecs_svc`>
+postData = `<?xml version=\`"1.0\`" ?`>`<!DOCTYPE ipecs_svc SYSTEM \`"iPECSService.dtd\`"`>`<ipecs_svc`>`<request type=\`"service\`" encrypt=\`"off\`" servicename=\`"clicktocall\`"`>`<clicktocall`>`<userinfo`>`<stnnum`>%stnNum%`</stnnum`>`<userid`>%stnNum%`</userid`>`<userpwd encrypt=\`"off\`"`>%stnPwd%`</userpwd`>`</userinfo`>`<srcinfo`>`<dialnum`>%stnNum%`</dialnum`>`</srcinfo`>`<destinfo calltype=\`"single\`"`>`<dialnum`>%linePrefix%%number%`</dialnum`>`</destinfo`>`</clicktocall`>`</request`>`</ipecs_svc`>
 ucpAddr = https`:`/`/%ucpIP%`:%ucpPort%`/ipecs_svc
 dialCmd = curl -k -X POST -d "%postData%" "%ucpAddr%"
 

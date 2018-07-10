@@ -4,3 +4,5 @@ ucpPort := "7878"
 
 stnNum := "1000"
 stnPwd := "secure password"
+
+linePrefix := "9"
